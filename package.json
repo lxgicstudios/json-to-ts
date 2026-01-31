@@ -1,0 +1,39 @@
+{
+  "name": "@lxgicstudios/json-to-ts",
+  "version": "1.0.0",
+  "description": "Generate TypeScript interfaces from JSON data or API responses",
+  "main": "dist/index.js",
+  "bin": {
+    "json-to-ts": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "json",
+    "typescript",
+    "interface",
+    "types",
+    "generator",
+    "api",
+    "cli",
+    "npx",
+    "developer-tools"
+  ],
+  "author": "LXGIC Studios <lxgicstudios@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lxgicstudios/json-to-ts"
+  },
+  "homepage": "https://github.com/lxgicstudios/json-to-ts#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": ["dist"],
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0"
+  }
+}
