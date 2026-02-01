@@ -1,121 +1,102 @@
 ---
-name: JSON to TypeScript CLI
-description: Convert JSON to TypeScript interfaces. API responses, config files. Smart type inference. Free type generation tool.
-tags: [json, typescript, types, interfaces, codegen, cli, developer]
+name: JSON to TypeScript - Interface Generator
+description: Generate TypeScript interfaces from JSON data or API responses. Auto-type your APIs instantly. Free CLI tool for TypeScript developers.
 ---
 
-# JSON to TypeScript CLI
+# JSON to TypeScript
 
-Convert JSON to TypeScript types instantly.
+Generate TypeScript interfaces from JSON. Stop writing types by hand.
 
-**Paste JSON. Get types. Ship faster.**
-
-## Quick Start
+## Installation
 
 ```bash
-npm install -g json-to-ts-cli
+npm install -g @lxgicstudios/json-to-ts
 ```
-
-```bash
-# From file
-json-to-ts data.json
-
-# From URL
-json-to-ts https://api.example.com/users
-
-# From clipboard
-pbpaste | json-to-ts
-```
-
-## Features
-
-### Smart Inference
-- Optional properties
-- Union types
-- Nullable fields
-- Array type detection
-
-### Naming
-- PascalCase interfaces
-- camelCase properties
-- Configurable prefixes
 
 ## Commands
 
+### From File
+
 ```bash
-# Basic conversion
-json-to-ts data.json
+npx @lxgicstudios/json-to-ts data.json
+npx @lxgicstudios/json-to-ts response.json -n User
+```
 
-# With root name
-json-to-ts data.json --name UserResponse
+### From URL
 
-# Output to file
-json-to-ts data.json -o types.ts
+```bash
+npx @lxgicstudios/json-to-ts https://api.example.com/users -n User
+```
 
-# From API
-json-to-ts https://api.example.com/users
+### From Pipe
 
-# Inline JSON
-echo '{"name": "John", "age": 30}' | json-to-ts
+```bash
+curl https://api.example.com/data | npx @lxgicstudios/json-to-ts -n ApiResponse
+```
+
+### Output to File
+
+```bash
+npx @lxgicstudios/json-to-ts api.json -o src/types/api.ts
 ```
 
 ## Example
 
-**Input:**
+Input JSON:
 ```json
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "John",
-      "email": "john@example.com",
-      "roles": ["admin", "user"],
-      "metadata": null
-    }
-  ],
-  "total": 42
+  "id": 1,
+  "name": "John",
+  "email": "john@example.com",
+  "address": { "city": "NYC" },
+  "tags": ["dev", "ts"]
 }
 ```
 
-**Output:**
+Output:
 ```typescript
-interface User {
+export interface Address {
+  city: string;
+}
+
+export interface Root {
   id: number;
   name: string;
   email: string;
-  roles: string[];
-  metadata: unknown | null;
-}
-
-interface RootObject {
-  users: User[];
-  total: number;
+  address: Address;
+  tags: string[];
 }
 ```
 
 ## Options
 
+| Option | Description |
+|--------|-------------|
+| `-n, --name` | Root interface name (default: Root) |
+| `-o, --output` | Write to file |
+| `-t, --type` | Use `type` instead of `interface` |
+| `--optional` | Make all properties optional |
+| `--no-export` | Don't add export keyword |
+
+## Features
+
+- Nested objects become separate interfaces
+- Arrays properly typed
+- Mixed arrays become union types
+- Fetches directly from URLs
+- Handles empty arrays as `unknown[]`
+
+## Common Use Cases
+
+**Type an API response:**
 ```bash
-# Export types
-json-to-ts data.json --export
-
-# Use type instead of interface
-json-to-ts data.json --type
-
-# Add readonly
-json-to-ts data.json --readonly
-
-# Separate files
-json-to-ts data.json --split
+curl https://api.github.com/users/octocat | npx @lxgicstudios/json-to-ts -n GitHubUser
 ```
 
-## When to Use This
-
-- API response typing
-- Config file types
-- Data migration
-- Quick prototyping
-- Documentation
+**Generate types for project:**
+```bash
+npx @lxgicstudios/json-to-ts sample-response.json -o src/types/api.ts -n ApiResponse
+```
 
 ---
 
