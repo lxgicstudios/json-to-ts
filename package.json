@@ -1,7 +1,7 @@
 {
   "name": "@lxgicstudios/json-to-ts",
-  "version": "1.0.0",
-  "description": "Generate TypeScript interfaces from JSON data or API responses",
+  "version": "1.0.1",
+  "description": "Generate TypeScript interfaces from JSON data or API responses. Zero-config CLI tool.",
   "main": "dist/index.js",
   "bin": {
     "json-to-ts": "./dist/cli.js"
@@ -11,27 +11,46 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "json",
-    "typescript",
-    "interface",
-    "types",
-    "generator",
     "api",
     "cli",
+    "codegen",
+    "conversion",
+    "developer-tools",
+    "generator",
+    "interface",
+    "json",
+    "nodejs",
     "npx",
-    "developer-tools"
+    "parse",
+    "quicktype",
+    "response",
+    "schema",
+    "transform",
+    "types",
+    "typescript",
+    "zero-config"
   ],
-  "author": "LXGIC Studios <lxgicstudios@gmail.com>",
+  "author": "LXGIC Studios <hello@lxgicstudios.com> (https://lxgicstudios.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lxgicstudios/json-to-ts"
+    "url": "git+https://github.com/lxgicstudios/json-to-ts.git"
   },
   "homepage": "https://github.com/lxgicstudios/json-to-ts#readme",
+  "bugs": {
+    "url": "https://github.com/lxgicstudios/json-to-ts/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/lxgicstudios"
+  },
   "engines": {
     "node": ">=16.0.0"
   },
-  "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": ["dist", "README.md"],
   "devDependencies": {
     "typescript": "^5.3.0",
     "@types/node": "^20.0.0"
